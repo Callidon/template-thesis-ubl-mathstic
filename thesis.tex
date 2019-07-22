@@ -1,0 +1,166 @@
+% Use the 'anglais' option to tell the template that your thesis is written in english
+% For thesis written in french, you have nothing to do ;-)
+\documentclass[anglais]{thesis-ubl}
+
+\usepackage{makeidx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Load Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliography{thesis}
+
+\renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossary & Acronyms (activate if you wish)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newglossaryentry{W3C}{%
+%   name        = {W3C},
+%   description = {The World Wide Web Consortium}
+% }
+%
+% \newglossaryentry{RDF}{%
+%   name        = {RDF},
+%   description = {W3C Resource Description Framework}
+% }
+%
+% \newglossaryentry{SPARQL}{%
+%   name        = {SPARQL},
+%   description = {SPARQL Protocol and RDF Query Language}
+% }
+
+\makeindex
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% English title (mandatory)
+\title{Thesis title}
+
+% French title (mandatory)
+\titre{Titre de la thèse}
+
+% Author
+\author{Prénom Nom}
+
+% Defense date & place
+\soutenance{\today}{Nantes}
+
+% Speciality (Usually: Informatique)
+\specialite{Informatique}
+
+% University
+\universite{Université de Nantes}
+
+% Set the school/university with \etablissement
+% UN -> Université de Nantes
+% ULM -> Université Le Mans
+% UA -> Université Angers
+% UR1 -> Université Rennes 1
+% UR2 -> Université Rennes 2
+% UBS -> Université Bretagne Sud
+% UBO -> Université Bretagne Occidentale
+\etablissement{UN}
+
+% Research unit
+\laboratoire{Laboratoire des Sciences du Numérique de Nantes}
+
+% Thesis number (optional)
+\thesenum{??}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis jury and adivsors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use \president or \presidente for male and female jury lead, respectively
+\president{Prénom Nom}{Fonction}{établissement d'exercice}
+
+% Use \jury multiple times to declare each member of the jury, up to 7 members
+\jury{Prénom Nom}{Fonction}{établissement d'exercice}
+\jury{Prénom Nom}{Fonction}{établissement d'exercice}
+\jury{Prénom Nom}{Fonction}{établissement d'exercice}
+\jury{Prénom Nom}{Fonction}{établissement d'exercice}
+
+% In the same spirit, use \invite multiple times to declare any guest (up to 3)
+\invite{Prénom Nom}{Fonction}{établissement d'exercice}
+
+% Use \directeur and \directrice for male and female thesis advisors, respectively
+\directeur{Prénom Nom}{Fonction}{établissement d'exercice}
+
+% Use \codirecteur, \codirectrice, \coencadrant and \coencadrante for thesis co-advisors, respectively
+\codirectrice{Prénom Nom}{Fonction}{établissement d'exercice}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis abstract & keywords (french & english)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use \abstract to typeset your thesis abstract in english (mandatory)
+% \abstract{...}
+
+% Use \keywords to set some keywords in english (mandatory)
+\keywords{from 3 to 16 keywords}
+
+% Use \resume to typeset your thesis abstract in french (mandatory)
+% \resume{...}
+
+% Use \motscles to set some keywords in french (mandatory)
+\motscles{de 3 à 16 mots-clés}
+
+\begin{document}
+
+\include{parts/acknowledgments}
+
+\tableofcontents
+
+\mainmatter
+
+% Un-comment to enable glossary
+% \begingroup
+%   \let\clearpage\relax
+%   \glsaddall
+%   \printglossary[type=\acronymtype]
+%   \printglossary
+% \endgroup
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat \cite{wilcoxon1992individual}. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\chapter{Background and Motivation}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim \cite{ozsu2011principles} minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\chapter{Conclusion}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lists fo figures, algorithms and tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\listoffigures
+
+\listofalgorithms
+
+\listoftables
+
+% This ensures that the subsequent sections are being included as root
+% items in the bookmark structure of your PDF reader.
+\bookmarksetup{startatroot}
+\backmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography & Index
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography
+\printindex
+\end{document}

@@ -1,0 +1,143 @@
+\begin{titlepage}
+  \newgeometry{margin=1in,left=0.5in}
+  \makeatletter
+  % ------ LOGOS ------
+  % Logo UBL-Mathstic
+  \begin{picture}(0,0)%
+    \put(-20,0){%
+    \includegraphics[scale=1]{cover/logos/logo-mathSTIC.png}}%
+  \end{picture}
+  % Logo Univ
+  \begin{picture}(0,0)%
+    \put(370,0){%
+      \@EtablissementLogo
+    }%
+  \end{picture}
+  % ------ END LOGOS ------
+
+  % ------ TITRE ---------
+  \vspace{2cm}
+  \begin{Huge}
+    \textsc{Thèse de doctorat de}
+  \end{Huge}\\[1cm]
+  \begin{Huge}
+    \phantom{x}\hspace{5cm}
+    \textbf{\@author}
+  \end{Huge}
+  % ------ END TITRE ---------
+
+  % ------ Infos univ + MathStic ---------
+  \vspace{2cm}
+  \begin{Large}
+    \noindent\textsc{\@Universite}\\
+    \textsc{Comue Université Bretagne Loire}\\
+    \textsc{École Doctorale} N\textdegree601\\
+    \emph{Mathématiques et Sciences et Technologies\\de l'Information et de la Communication}\\
+    \textbf{Spécialité} : \@Specialite
+  \end{Large}
+  % ------ END Infos univ + MathStic ---------
+
+  % ------ THESIS TITLE ---------
+  \vspace{2cm}
+  \begin{Huge}
+    \ifdefined\@isEnglish
+      \textbf{\@title}
+    \else
+      \textbf{\@Titre}
+    \fi
+  \end{Huge}
+  % ------ END TITLE ---------
+
+  % ------ Infos soutenances ---------
+  \vspace{2cm}
+  \begin{large}
+    \noindent Thèse présentée et soutenue à \@LieuSoutenance, le \@DateSoutenance\\
+    \textbf{Unité de recherche} : \@Laboratoire\\
+    \ifdefined\@NumeroThese
+      \textbf{Thèse N\textdegree\@NumeroThese}
+    \fi
+  \end{large}
+  % ------ END Infos soutenances ---------
+
+  % ------ JURY ---------
+  \vspace{2cm}
+  \begin{large}
+    \noindent\textcolor{mathSTIC-Color}{\textsc{Composition du Jury}}\\
+    \begin{tabular}{lll}
+      % Président(e)
+      \ifdefined\@PresidentName
+        \emph{Président :} & \textbf{\@PresidentName} & \@PresidentPosition, \@PresidentAffi \\
+      \fi
+      \ifdefined\@PresidenteName
+        \emph{Présidente :} & \textbf{\@PresidenteName} & \@PresidentePosition, \@PresidenteAffi \\
+      \fi
+
+      % Examinateurs (up to 7)
+      \ifdefined\@JuryAName
+        \emph{Examinateurs :} & \textbf{\@JuryAName} & \@JuryAPosition, \@JuryAAffi \\
+      \fi
+      \ifdefined\@JuryBName
+        & \textbf{\@JuryBName} & \@JuryBPosition, \@JuryBAffi \\
+      \fi
+      \ifdefined\@JuryCName
+        & \textbf{\@JuryCName} & \@JuryCPosition, \@JuryCAffi \\
+      \fi
+      \ifdefined\@JuryDName
+        & \textbf{\@JuryDName} & \@JuryDPosition, \@JuryDAffi \\
+      \fi
+      \ifdefined\@JuryEName
+        & \textbf{\@JuryEName} & \@JuryEPosition, \@JuryEAffi \\
+      \fi
+      \ifdefined\@JuryFName
+        & \textbf{\@JuryFName} & \@JuryFPosition, \@JuryFAffi \\
+      \fi
+      \ifdefined\@JuryGName
+        & \textbf{\@JuryGName} & \@JuryGPosition, \@JuryGAffi \\
+      \fi
+
+      % Thesis advisors
+      \ifdefined\@DirectriceName
+        \emph{Directrice de thèse :} & \textbf{\@DirectriceName} & \@DirectricePosition, \@DirectriceAffi \\
+      \fi
+      \ifdefined\@DirecteurName
+        \emph{Directeur de thèse :} & \textbf{\@DirecteurName} & \@DirecteurPosition, \@DirecteurAffi \\
+      \fi
+      \ifdefined\@CoDirectriceName
+        \emph{Co-directrice de thèse :} & \textbf{\@CoDirectriceName} & \@CoDirectricePosition, \@CoDirectriceAffi \\
+      \fi
+      \ifdefined\@CoDirecteurName
+        \emph{Co-directeur de thèse :} & \textbf{\@CoDirecteurName} & \@CoDirecteurPosition, \@CoDirecteurAffi \\
+      \fi
+      \ifdefined\@CoencadranteName
+        \emph{Co-encadrante de thèse :} & \textbf{\@CoencadranteName} & \@CoencadrantePosition, \@CoencadranteAffi \\
+      \fi
+      \ifdefined\@CoencadrantName
+        \emph{Co-encadrant de thèse :} & \textbf{\@CoencadrantName} & \@CoencadrantPosition, \@CoencadrantAffi \\
+      \fi
+
+      % Invites (upt to 3)
+      \ifdefined\@InviteAName
+        % proper conjugaison of invité ;-)
+        \ifdefined\@InviteBName
+          \emph{Invités :}
+        \else
+          \emph{Invité :}
+        \fi
+         & \textbf{\@InviteAName} & \@InviteAPosition, \@InviteAAffi \\
+      \fi
+      \ifdefined\@InviteBName
+        & \textbf{\@InviteBName} & \@InviteBPosition, \@InviteBAffi \\
+      \fi
+      \ifdefined\@InviteCName
+        & \textbf{\@InviteCName} & \@InviteCPosition, \@InviteCAffi \\
+      \fi
+    \end{tabular}
+  \end{large}
+  % ------ END JURY ---------
+
+\end{titlepage}
+\restoregeometry
+\newpage
+\null
+\thispagestyle{empty}
+\newpage

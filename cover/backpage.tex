@@ -1,0 +1,40 @@
+\newgeometry{margin=1in,left=0.5in}
+\makeatletter
+% ------ LOGOS ------
+% Logo UBL-Mathstic
+\begin{picture}(0,0)%
+  \put(-20,0){%
+  \includegraphics[scale=1]{cover/logos/logo-mathSTIC.png}}%
+\end{picture}
+% Logo Univ
+\begin{picture}(0,0)%
+  \put(320,0){%
+  \@EtablissementLogo}%
+\end{picture}
+% ------ END LOGOS ------
+
+\vspace{1.5cm}
+\noindent \textcolor{mathSTIC-Color}{\rule{\textwidth }{0.2cm}}
+
+% ------ FRENCH abstract ------
+\section*{\textcolor{mathSTIC-Color}{Titre} \@Titre}
+\textbf{Mots clés :} \@MotsCles
+\begin{multicols}{2}
+\noindent\textbf{Résumé : }
+\@Resume
+\end{multicols}
+
+% ------ END FRENCH abstract ------
+
+\noindent \textcolor{grisclair}{\rule{\textwidth }{0.2cm}}
+
+% ------ ENGLISH abstract ------
+\section*{\textcolor{mathSTIC-Color}{Title} \@title}
+\textbf{Keywords :} \@Keywords
+\begin{multicols}{2}
+\noindent\textbf{Abstract:}
+\@Abstract
+\end{multicols}
+% ------ END ENGLISH abstract ------
+
+\noindent \textcolor{mathSTIC-Color}{\rule{\textwidth }{0.2cm}}
