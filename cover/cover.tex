@@ -1,4 +1,4 @@
-\begin{titlepage}
+\begin{titlingpage}
   \newgeometry{margin=1in,left=0.5in}
   \makeatletter
   % ------ LOGOS ------
@@ -18,7 +18,7 @@
   % ------ TITRE ---------
   \vspace{2cm}
   \begin{Huge}
-    \textsc{Thèse de doctorat de}
+    \textsc{Thèse de doctorat}
   \end{Huge}\\[1cm]
   \begin{Huge}
     \phantom{x}\hspace{5cm}
@@ -28,22 +28,22 @@
 
   % ------ Infos univ + MathStic ---------
   \vspace{2cm}
-  \begin{Large}
+  % \begin{Large}
     \noindent\textsc{\@Universite}\\
     \textsc{Comue Université Bretagne Loire}\\
     \textsc{École Doctorale} N\textdegree601\\
     \emph{Mathématiques et Sciences et Technologies\\de l'Information et de la Communication}\\
     \textbf{Spécialité} : \@Specialite
-  \end{Large}
+  % \end{Large}
   % ------ END Infos univ + MathStic ---------
 
   % ------ THESIS TITLE ---------
   \vspace{2cm}
   \begin{Huge}
     \ifdefined\@isEnglish
-      \textbf{\@title}
+      \hspace*{-1cm}\textbf{\@title}
     \else
-      \textbf{\@Titre}
+      \hspace*{-1cm}\textbf{\@Titre}
     \fi
   \end{Huge}
   % ------ END TITLE ---------
@@ -55,6 +55,9 @@
     \textbf{Unité de recherche} : \@Laboratoire\\
     \ifdefined\@NumeroThese
       \textbf{Thèse N\textdegree\@NumeroThese}
+    \else
+      % insert phantom text to keep the vspace consistent with/without a thesis number
+      \phantom{\textbf{Thèse N\textdegree??}}
     \fi
   \end{large}
   % ------ END Infos soutenances ---------
@@ -62,8 +65,11 @@
   % ------ JURY ---------
   \vspace{2cm}
   \begin{large}
-    \noindent\textcolor{mathSTIC-Color}{\textsc{Composition du Jury}}\\
-    \begin{tabular}{lll}
+    \noindent\textcolor{mathSTIC-Color}{\textsc{Composition du Jury}}
+  \end{large}
+
+  \begin{small}
+    \begin{longtable}{lll}
       % Président(e)
       \ifdefined\@PresidentName
         \emph{Président :} & \textbf{\@PresidentName} & \@PresidentPosition, \@PresidentAffi \\
@@ -71,10 +77,29 @@
       \ifdefined\@PresidenteName
         \emph{Présidente :} & \textbf{\@PresidenteName} & \@PresidentePosition, \@PresidenteAffi \\
       \fi
+    
+      % a blank line, to leave some space between each category
+      & & \\
+
+      % Rapporteurs
+      \ifdefined\@RapporteurAName
+        \emph{Rapporteurs :} & \textbf{\@RapporteurAName} & \@RapporteurAPosition, \@RapporteurAAffi \\
+      \fi
+      \ifdefined\@RapporteurBName
+        & \textbf{\@RapporteurBName} & \@RapporteurBPosition, \@RapporteurBAffi \\
+      \fi
+
+      % a blank line, to leave some space between each category
+      & & \\
 
       % Examinateurs (up to 7)
       \ifdefined\@JuryAName
-        \emph{Examinateurs :} & \textbf{\@JuryAName} & \@JuryAPosition, \@JuryAAffi \\
+        \ifdefined\@JuryBName
+          \emph{Examinateurs :}
+        \else
+          \emph{Examinateur :}
+        \fi
+        & \textbf{\@JuryAName} & \@JuryAPosition, \@JuryAAffi \\
       \fi
       \ifdefined\@JuryBName
         & \textbf{\@JuryBName} & \@JuryBPosition, \@JuryBAffi \\
@@ -95,6 +120,9 @@
         & \textbf{\@JuryGName} & \@JuryGPosition, \@JuryGAffi \\
       \fi
 
+      % a blank line, to leave some space between each category
+      & & \\
+
       % Thesis advisors
       \ifdefined\@DirectriceName
         \emph{Directrice de thèse :} & \textbf{\@DirectriceName} & \@DirectricePosition, \@DirectriceAffi \\
@@ -102,12 +130,16 @@
       \ifdefined\@DirecteurName
         \emph{Directeur de thèse :} & \textbf{\@DirecteurName} & \@DirecteurPosition, \@DirecteurAffi \\
       \fi
+      % a blank line, to leave some space between each category
+      & & \\
       \ifdefined\@CoDirectriceName
         \emph{Co-directrice de thèse :} & \textbf{\@CoDirectriceName} & \@CoDirectricePosition, \@CoDirectriceAffi \\
       \fi
       \ifdefined\@CoDirecteurName
         \emph{Co-directeur de thèse :} & \textbf{\@CoDirecteurName} & \@CoDirecteurPosition, \@CoDirecteurAffi \\
       \fi
+      % a blank line, to leave some space between each category
+      & & \\
       \ifdefined\@CoencadranteName
         \emph{Co-encadrante de thèse :} & \textbf{\@CoencadranteName} & \@CoencadrantePosition, \@CoencadranteAffi \\
       \fi
@@ -123,7 +155,7 @@
         \else
           \emph{Invité :}
         \fi
-         & \textbf{\@InviteAName} & \@InviteAPosition, \@InviteAAffi \\
+          & \textbf{\@InviteAName} & \@InviteAPosition, \@InviteAAffi \\
       \fi
       \ifdefined\@InviteBName
         & \textbf{\@InviteBName} & \@InviteBPosition, \@InviteBAffi \\
@@ -131,13 +163,7 @@
       \ifdefined\@InviteCName
         & \textbf{\@InviteCName} & \@InviteCPosition, \@InviteCAffi \\
       \fi
-    \end{tabular}
-  \end{large}
+    \end{longtable}
+  \end{small}
   % ------ END JURY ---------
-
-\end{titlepage}
-\restoregeometry
-\newpage
-\null
-\thispagestyle{empty}
-\newpage
+\end{titlingpage}

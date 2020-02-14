@@ -1,7 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesis-ubl}[2019/07/13 Minimal modern thesis class for UBL]
 
-\LoadClass[12pt,a4paper]{mimosis}
+\LoadClass[12pt,a4paper,
+  cleardoublepage=empty,
+  numbers=noenddot,
+  titlepage,
+  toc=bibliography,
+  toc=index]{memoir}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LaTeX class options
@@ -30,7 +35,10 @@
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage{lmodern}
+\RequirePackage{longtable}
+\RequirePackage[usenames,dvipsnames]{xcolor}
+\definecolor{RoyalBlue}{RGB}{90, 118, 233}
+% \RequirePackage{lmodern}
 \ifdefined\@isEnglish
   \RequirePackage[english]{babel}
 \else
@@ -54,10 +62,10 @@
 
 \RequirePackage{textcomp}
 \RequirePackage{bookmark}
+\RequirePackage{microtype}
 
 % For typesettings algorithms
 \RequirePackage{listings}
-\RequirePackage[ruled,linesnumbered]{algorithm2e}
 
 % Math stuffs
 \RequirePackage{amsmath}
@@ -81,7 +89,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{colortbl}
 \RequirePackage{multicol}
-\usetikzlibrary{positioning,shapes,fit,chains,automata,patterns}
+\usetikzlibrary{positioning,shapes,fit,chains,automata,patterns,arrows}
 
 \RequirePackage[%
   autocite     = plain,
@@ -170,7 +178,6 @@
 \newcommand{\thesenum}[1]{
   \gdef\@NumeroThese{#1}
 }
-\thesenum{??}
 
 \newcommand{\keywords}[1]{
   \gdef\@Keywords{#1}
@@ -182,10 +189,10 @@
 }
 \motscles{de 3 à 16 mots-clés}
 
-\newcommand{\abstract}[1]{
+\newcommand{\Abstract}[1]{
   \gdef\@Abstract{#1}
 }
-\abstract{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\Abstract{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
 
 \newcommand{\resume}[1]{
@@ -279,7 +286,31 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
   \gdef\@PresidenteAffi{#3}
 }
 
-% Generic command for setting jury members, upt to 7
+% Generic command for setting examiners, up to 2
+% Work by setting new macros at each invocation
+% Usage: \rapporteur{Firstname Lastname}{Position}{Affiliation}
+\newcommand{\rapporteur}[3]{
+  \ifdefined\@RapporteurAName
+    \rapporteurB{#1}{#2}{#3}
+  \else
+    \rapporteurA{#1}{#2}{#3}
+  \fi
+}
+
+% Used internally for setting examiners
+% NOT TO USE DIRECTLY (unless you know what you do)
+\newcommand{\rapporteurA}[3]{
+  \gdef\@RapporteurAName{#1}
+  \gdef\@RapporteurAPosition{#2}
+  \gdef\@RapporteurAAffi{#3}
+}
+\newcommand{\rapporteurB}[3]{
+  \gdef\@RapporteurBName{#1}
+  \gdef\@RapporteurBPosition{#2}
+  \gdef\@RapporteurBAffi{#3}
+}
+
+% Generic command for setting jury members, up to 7
 % Work by setting new macros at each invocation
 % Usage: \jury{Firstname Lastname}{Position}{Affiliation}
 \newcommand{\jury}[3]{
@@ -387,16 +418,28 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 \AtBeginDocument{
   \AddToShipoutPicture*{\BackgroundPic}
   \frontmatter
-  \include{cover/cover}
+  \input{cover/cover}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Backpage content
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \AtEndDocument{
-  \cleartoleftpage
-  \begingroup
+  \cleartoverso
   \thispagestyle{empty}
   \AddToShipoutPicture*{\BackpagePic}
-  \include{./cover/backpage}
+  \input{./cover/backpage}
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter/Section/Subsection style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \makechapterstyle{mym}{%
+%   \renewcommand\chapnamefont{\normalfont\Large\raggedleft\lsstyle}%
+%   \renewcommand\chaptitlefont{\normalfont\color{RoyalBlue}\Huge\lsstyle}%
+%   \renewcommand\printchapternonum{}%
+%   \renewcommand\printchaptertitle[1]{\chaptitlefont ##1}%
+%   \renewcommand\afterchaptertitle{\par\nobreak\bigskip\hrule\vspace{0.5in}}
+% }
+\renewcommand\thesection{\textcolor{RoyalBlue}{\thechapter.\arabic{section}}}
+\renewcommand\thesubsection{\textcolor{RoyalBlue}{\thesection.\arabic{subsection}}}

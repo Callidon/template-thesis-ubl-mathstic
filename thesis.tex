@@ -4,6 +4,21 @@
 
 \usepackage{makeidx}
 
+\usepackage[%
+  acronym,
+  automake,
+  nogroupskip,
+  nopostdot,
+  nonumberlist,
+  toc
+]{glossaries}
+
+% for typesetting algorithms
+\usepackage[ruled,linesnumbered,vlined]{algorithm2e}
+
+% for typesetting code
+\usepackage{minted}
+\usemintedstyle{tango}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Load Bibliography
@@ -13,7 +28,7 @@
 \renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Glossary & Acronyms (activate if you wish)
+% Glossary & Acronyms (uncomment the following to enable it)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \newglossaryentry{W3C}{%
@@ -31,6 +46,8 @@
 %   description = {SPARQL Protocol and RDF Query Language}
 % }
 
+% Generate the indexes and glossaries
+% It is automatically skipped if there are no index or glossaries, so you can leave it as it is
 \makeindex
 \makeglossaries
 
@@ -70,29 +87,32 @@
 \laboratoire{Laboratoire des Sciences du Numérique de Nantes}
 
 % Thesis number (optional)
-\thesenum{??}
+% \thesenum{??}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Thesis jury and adivsors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Use \president or \presidente for male and female jury lead, respectively
-\president{Prénom Nom}{Fonction}{établissement d'exercice}
+% It should only be set for the final version, as the jury lead is elected during the defence
+% \president{Mr. Prénom Nom}{Fonction}{établissement d'exercice}
+
+% Use \rapporteur to declare the two thesis examiners
+\rapporteur{M\textsuperscript{me} Prénom Nom}{Fonction}{établissement d'exercice}
+\rapporteur{Mr. Prénom Nom}{Fonction}{établissement d'exercice}
 
 % Use \jury multiple times to declare each member of the jury, up to 7 members
-\jury{Prénom Nom}{Fonction}{établissement d'exercice}
-\jury{Prénom Nom}{Fonction}{établissement d'exercice}
-\jury{Prénom Nom}{Fonction}{établissement d'exercice}
-\jury{Prénom Nom}{Fonction}{établissement d'exercice}
+\jury{M\textsuperscript{me} Prénom Nom}{Fonction}{établissement d'exercice}
+\jury{Mr. Prénom Nom}{Fonction}{établissement d'exercice}
 
 % In the same spirit, use \invite multiple times to declare any guest (up to 3)
-\invite{Prénom Nom}{Fonction}{établissement d'exercice}
+% \invite{Mr. Prénom Nom}{Fonction}{établissement d'exercice}
 
 % Use \directeur and \directrice for male and female thesis advisors, respectively
-\directeur{Prénom Nom}{Fonction}{établissement d'exercice}
+\directeur{Mr. Prénom Nom}{Fonction}{établissement d'exercice}
 
 % Use \codirecteur, \codirectrice, \coencadrant and \coencadrante for thesis co-advisors, respectively
-\codirectrice{Prénom Nom}{Fonction}{établissement d'exercice}
+\codirectrice{M\textsuperscript{me} Prénom Nom}{Fonction}{établissement d'exercice}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Thesis abstract & keywords (french & english)
@@ -112,19 +132,20 @@
 
 \begin{document}
 
-\include{parts/acknowledgments}
+% use an empty pagestyle until the main matter
+\pagestyle{empty}
+\frontmatter
 
-\tableofcontents
+\cleartorecto
+\input{parts/acknowledgments}
 
+\cleartorecto
+\tableofcontents*
+
+% switch to the real pagestyle for the core of the thesis
+\clearpage
+\pagestyle{ruled}
 \mainmatter
-
-% Un-comment to enable glossary
-% \begingroup
-%   \let\clearpage\relax
-%   \glsaddall
-%   \printglossary[type=\acronymtype]
-%   \printglossary
-% \endgroup
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Thesis content
@@ -143,24 +164,33 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Lists fo figures, algorithms and tables
+% Appendixes and frenc resume (mandatory for thesis written in english)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\appendix
+\chapter{Résumé en langue française}\label{chap:resume_fr}
+\input{parts/resume_fr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lists of figures, algorithms and tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleartorecto
 \listoffigures
 
+\cleartorecto
 \listofalgorithms
 
+\cleartorecto
 \listoftables
 
-% This ensures that the subsequent sections are being included as root
-% items in the bookmark structure of your PDF reader.
-\bookmarksetup{startatroot}
-\backmatter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography & Index
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \printbibliography
-\printindex
+
+% glossary & acronyms (uncomment the following to enable it)
+% \begingroup
+%   \glsaddall
+%   \printglossary[type=\acronymtype]
+% \endgroup
+
+\backmatter
 \end{document}
